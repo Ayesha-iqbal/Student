@@ -72,12 +72,13 @@ const Header = () => {
           >
             <img className='w-10 h-10' src='/icons/menu.svg' alt='menu' />
           </button>
+         
           {mobileMenu ? <MobileMenu mobileMenuHandler={mobileMenuHandler} /> : null}
         </div>
 
         <nav className='hidden md:flex space-x-10'>
           <div ref={ref} className='relative'>
-            {/*<!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->*/}
+            {/* <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->*/}
             {/* <button
               onClick={menuHandler}
               type='button'
@@ -108,17 +109,17 @@ const Header = () => {
             <StyledLink active={router.pathname == '/pricing' ? true : false}>Projects</StyledLink>
           </Link>*/
           <Link href='/app/dashboard'>
-            <StyledLink active={router.pathname == '/app' ? true : false}>Dashboard</StyledLink>
+            <StyledLink active={router.pathname == '/app' ? true : false}>Student Board</StyledLink>
           </Link>}
         </nav>
 
         <div className='hidden md:flex items-center justify-end space-x-8 md:flex-1 lg:w-0'>
           <span className='inline-flex rounded-md shadow-sm'>
-            <Link href='/login'>
+            {/* <Link href='/'>
               <div className='cursor-pointer whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150'>
                 Sign-In
               </div>
-            </Link>
+            </Link> */}
           </span>
         </div>
       </div>

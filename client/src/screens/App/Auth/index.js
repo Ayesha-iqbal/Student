@@ -1,86 +1,55 @@
-import LoginFormHeader from './loginFormHeader';
-import AuthContext from '../../../utils/authContext';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { useContext, useEffect, useState } from 'react';
-import jwt_decode from 'jwt-decode';
-import { useRouter } from 'next/router';
-import { navigate } from '@reach/router';
-import { sendtokenToServer } from '../../../api/authApi';
-import LoadingOverlay from '../../../components/app/Common/loadingOverlay';
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import Link from 'next/link';
 
-const LoginSignup = () => {
-  const [isLoading, setLoading] = useState(false);
-  const { firebase, LogIn, LogOut } = useContext(AuthContext);
+const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: theme.spacing(3),
+  },
+}));
 
-  const router = useRouter();
-
-  useEffect(() => {
-    setTimeout(() => LogOut(), 200);
-  }, []);
-
-  const uiConfig = {
-    credentialHelper: 'none',
-    signInFlow: 'popup',
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.EmailAuthProvider.PROVIDER_ID
-    ],
-    callbacks: {
-      signInSuccessWithAuthResult: function (authResult) {
-        setLoading(true);
-        saveProfile(authResult);
-        return false;
-      },
-      signInFailure: function (error) {
-        console.log(error);
-      }
-    }
-  };
-
-  const saveProfile = (authResult) => {
-    let username = authResult.user.displayName;
-
-    firebase
-      .auth()
-      .currentUser.getIdToken()
-      .then((token) => sendtokenToServer(token, username))
-      .then((res) => LogintoContext(res.data))
-      .catch((err) => console.log(err));
-
-    const LogintoContext = (data) => {
-      let email = authResult.user.email;
-      let id = jwt_decode(data.token);
-      let photo = authResult.user.photoURL;
-      let provider = authResult.user.providerData[0].providerId;
-
-      let user = {
-        email,
-        username,
-        id,
-        photo,
-        provider
-      };
-
-      LogIn(user);
-      setTimeout(() => navigate('/app'), 200);
-      setTimeout(() => router.push('/app'), 400);
-    };
-  };
+const LoginSignUp = () => {
+  const classes = useStyles();
 
   return (
-    <div className='min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
-      <LoginFormHeader />
-      {isLoading ? <LoadingOverlay /> : null}
-      <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
-        <div className='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10'>
-          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-          <hr />
-        </div>
-      </div>
-    </div>
+    <Container className={classes.container} maxWidth="xs">
+      <form>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField fullWidth label="Email" name="email" size="small" variant="outlined" />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Password"
+                  name="password"
+                  size="small"
+                  type="password"
+                  variant="outlined"
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            {/* <Button color="secondary" fullWidth type="submit" variant="contained" onClick={this.routeChange}>
+              Log in
+            </Button> */}
+            <Link href='/app/dashboard'>
+              <div className='cursor-pointer whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150'>
+                Sign-In
+              </div>
+            </Link>
+          </Grid>
+        </Grid>
+      </form>
+    </Container>
   );
 };
 
-export default LoginSignup;
+export default LoginSignUp;

@@ -52,32 +52,8 @@ const Footer = () => {
       </IMGContainer>
       <SocialBarFooter />
       <Container>
-        <Column>
-          <FooterColHeader>Header 1</FooterColHeader>
-          <Link href='/'>
-            <FooterLink>Link1</FooterLink>
-          </Link>
-          <Link href='/'>
-            <FooterLink>Link2</FooterLink>
-          </Link>
-          <Link href='/'>
-            <FooterLink>Link3</FooterLink>
-          </Link>
-        </Column>
-        <Column>
-          <FooterColHeader>Header 2</FooterColHeader>
-          <Link href='/'>
-            <FooterLink>Link1</FooterLink>
-          </Link>
-          <Link href='/'>
-            <FooterLink>Link2</FooterLink>
-          </Link>
-          <Link href='/'>
-            <FooterLink>Link3</FooterLink>
-          </Link>
-        </Column>
       </Container>
-      <BottomFooter>Copyright &copy; 2020 Example Inc</BottomFooter>
+      <BottomFooter>Copyright &copy; 2020 StudentBoard Inc</BottomFooter>
     </div>
   );
 };
