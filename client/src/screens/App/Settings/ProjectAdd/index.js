@@ -31,6 +31,7 @@ const CreateTask = () => {
 
     setTitle('');
     setDescription('');
+    
   };
 
   const handleTitleChange = (event) => {

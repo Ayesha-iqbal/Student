@@ -1,5 +1,18 @@
-import Routes from '../components/app/Routes';
+import LoginSignup from '../screens/App/Auth';
+import Header from '../components/marketing/Navigation/header';
+import Headroom from 'react-headroom';
+import Footer from '../components/marketing/Navigation/footer';
 
 export default function Home() {
-  return <Routes/>;
+  return (
+  <>
+    <Headroom>
+      <Header />
+    </Headroom>
+
+    <LoginSignup />
+
+    <Footer />
+  </>
+  );
 }
