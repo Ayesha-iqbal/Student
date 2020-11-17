@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AuthContext from '../../../utils/authContext';
-import { postTodoApi } from '../../../api/todoApi';
 
 const CreateTask = () => {
   const [formTitle, setTitle] = useState('');
@@ -27,7 +26,6 @@ const CreateTask = () => {
     let title = event.target.title.value;
     let description = event.target.description.value;
     let data = { title, description, author };
-
     let result = await postTodoApi(data);
     handleRes(result);
 

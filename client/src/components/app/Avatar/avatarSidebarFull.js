@@ -1,11 +1,9 @@
 import AvatarDropDown from './avatarDropDown';
 import { useState, useRef, useContext } from 'react';
 import useOutsideClick from '../../../hooks/useOutsideClick';
-import AuthContext from '../../../utils/authContext';
 import { MdAccountCircle } from 'react-icons/md';
 
 const AvatarSidebarFull = () => {
-  const { authState } = useContext(AuthContext);
   const photo = authState.user ? authState.user.photo : null;
   const username = authState.user ? authState.user.username : 'Guest';
   const [avatarMenu, toggleAvatarMenu] = useState(false);

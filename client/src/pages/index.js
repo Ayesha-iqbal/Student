@@ -1,5 +1,5 @@
-import Landing from '../screens/Marketing/LandingPageHome';
+import Routes from '../components/app/Routes';
 
 export default function Home() {
-  return <Landing />;
+  return <Routes/>;
 }

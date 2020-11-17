@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AuthContext from '../../../utils/authContext';
 import styled from 'styled-components';
-import { fetchTodoApi, deleteTodoApi, putTodoApi } from '../../../api/todoApi';
-
 const StyledMain = styled.div`
   display: flex;
   flex-direction: column;
@@ -55,7 +53,6 @@ const ReadUpdate = () => {
 
   const deleteTodo = async (todo) => {
     let todo_id = todo.todo_id;
-
     let data = { todo_id };
     deleteTodoApi(data);
     setEdit(false);
