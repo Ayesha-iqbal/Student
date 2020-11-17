@@ -13,6 +13,13 @@ const Sidebar = styled.div`
   animation: GrowSideBar 0.4s ease-out forwards;
 `;
 
+const style = { 
+  logo:{
+    width:"60%",
+    height: "auto",
+  }
+}
+
 const StyledArrow = styled(BiArrowFromRight)`
   width: 1.5rem;
   height: 1.5rem;
@@ -33,7 +40,7 @@ const SidebarDesktop = ({ sidebarHandler }) => {
         <Sidebar>
           <div className='flex-1 flex flex-col pt-5 pb-4 overflow-y-auto'>
             <div className='flex pl-6'>
-              <img className='h-8 w-auto' src='/logo/large_logo.svg' alt='StudentBoard' />
+              <img style={style.logo} src='/logo/StudentBoardLogo.png' alt='StudentBoard' />
             </div>
 
             <Avatar />
